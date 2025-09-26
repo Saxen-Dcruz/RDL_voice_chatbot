@@ -23,7 +23,7 @@ class RAGManager:
             if self.rag_initialized.is_set():
                 return
                 
-            print("🔄 Pre-loading RAG system...")
+            print("Pre-loading RAG system...")
 
             rag_config = config.get("agent.rag", {})
             index_path = rag_config.get("vectorstore_path")
@@ -53,18 +53,18 @@ class RAGManager:
                 )
                 
                 self.rag_initialized.set()
-                print("✅ RAG system pre-loaded and ready!")
+                print("RAG system pre-loaded and ready!")
 
             except asyncio.TimeoutError:
-                print("❌ RAG initialization timed out.")
+                print("RAG initialization timed out.")
                 self.rag_initialized.set()
             except Exception as e:
-                print(f"❌ RAG initialization error: {e}")
+                print(f"RAG initialization error: {e}")
                 self.rag_initialized.set()
 
     async def _load_vectorstore_async(self, index_path: str, embedding_model_name: str) -> FAISS:
         """Asynchronously load vectorstore with better error handling"""
-        print(f"📚 Loading FAISS vector store from: {index_path}")
+        print(f"Loading FAISS vector store from: {index_path}")
         
         # CORRECTED: Use partial to pass model_name as keyword argument
         embedding_model = await asyncio.get_event_loop().run_in_executor(
@@ -83,7 +83,7 @@ class RAGManager:
             )
         )
         
-        print("✅ Vector store loaded.")
+        print("Vector store loaded.")
         return vectorstore
 
     def _build_runnable_rag(self, llm: ChatGoogleGenerativeAI, vs: FAISS, k: int = 3) -> Tuple[RunnableParallel, ConversationBufferMemory]:
@@ -148,7 +148,7 @@ class RAGManager:
         except asyncio.TimeoutError:
             return "The query is taking longer than expected. Please try a more specific question."
         except Exception as e:
-            print(f"❌ RAG query error: {e}")
+            print(f"RAG query error: {e}")
             return "I encountered an error while searching the knowledge base. Please try again."
 
     def _safe_chain_invoke(self, question: str) -> str:
@@ -156,7 +156,7 @@ class RAGManager:
         try:
             return self.rag_chain.invoke(question)
         except Exception as e:
-            print(f"❌ Chain invocation error: {e}")
+            print(f"Chain invocation error: {e}")
             return f"I encountered an error: {str(e)}"
 
     async def get_conversation_history(self) -> list:
@@ -172,4 +172,5 @@ class RAGManager:
 
     def is_ready(self) -> bool:
         """Check if RAG system is ready"""
-        return self.rag_initialized.is_set() and self.rag_chain is not None
+        return self.rag_initialized.is_set() and self.rag_chain is not None  
+
