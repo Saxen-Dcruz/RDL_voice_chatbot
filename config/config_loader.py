@@ -1,18 +1,30 @@
-# config_loader.py
+# config/config_loader.py
 import os
 from typing import Dict, Any, Optional
 import yaml
 from dotenv import load_dotenv
+from pathlib import Path
 
 class Config:
-    def __init__(self, config_path: str = "config.yaml"):
+    def __init__(self, config_path: Optional[str] = None):
         load_dotenv(".env")
-        self.config_path = config_path
+        
+        # Get the directory where this config_loader.py file is located
+        config_dir = Path(__file__).parent
+        
+        # Set the config path - look in the same directory as this file
+        if config_path is None:
+            self.config_path = config_dir / "config.yaml"
+        else:
+            self.config_path = Path(config_path)
+        
+        print(f"🔍 Looking for config file at: {self.config_path}")
         self._config = self._load_config()
+        print("✅ Config loaded successfully!")
     
     def _load_config(self) -> Dict[str, Any]:
         """Load and parse the YAML configuration file"""
-        if not os.path.exists(self.config_path):
+        if not self.config_path.exists():
             raise FileNotFoundError(f"Config file not found: {self.config_path}")
         
         with open(self.config_path, 'r') as file:
@@ -29,7 +41,11 @@ class Config:
             return [self._resolve_env_vars(item) for item in config]
         elif isinstance(config, str) and config.startswith("${") and config.endswith("}"):
             env_var = config[2:-1]
-            return os.getenv(env_var, config)
+            env_value = os.getenv(env_var)
+            if env_value is None:
+                print(f"⚠️  Environment variable {env_var} not found, using placeholder")
+                return config
+            return env_value
         else:
             return config
     
@@ -37,11 +53,16 @@ class Config:
         """Get configuration value using dot notation"""
         keys = key.split('.')
         value = self._config
-        for k in keys:
-            value = value.get(k, {})
-            if value == {}:
-                return default
-        return value
+        
+        try:
+            for k in keys:
+                if isinstance(value, dict) and k in value:
+                    value = value[k]
+                else:
+                    return default
+            return value
+        except (AttributeError, TypeError):
+            return default
     
     def validate_required_keys(self, required_keys: list) -> None:
         """Validate that required configuration keys are present"""
