@@ -14,7 +14,7 @@ agent:
   # Model configurations
   models:
     llm:
-      model: "gemini-1.5-flash"
+      model: "gemini-2.5-flash"
       
     
     stt:
@@ -36,7 +36,7 @@ agent:
     vectorstore_path: "C:\\Users\\gerar\\Desktop\\voice_agent\\RDL_chatbot\\knowledge_base\\faiss_index"
     embedding_model: "BAAI/bge-m3"
     retrieval_k: 4
-    llm_model: "gemini-1.5-flash-8b"
+    llm_model: "gemini-2.5-flash"
 
   # Voice processing
   voice_processing:
