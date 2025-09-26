@@ -1,0 +1,44 @@
+# config.yaml
+livekit:
+  host: "wss://your-project.livekit.cloud"
+  api_key: "${LIVEKIT_API_KEY}"
+  api_secret: "${LIVEKIT_API_SECRET}"
+
+agent:
+  name: "RDL Technologies AI Agent"
+  instructions: 
+    You are the official RDL Technologies AI Agent.  
+    For all RDL-related questions, you must use the `query_rag_database` tool to fetch information from the knowledge base.  
+    For general questions, answer normally.
+  
+  # Model configurations
+  models:
+    llm:
+      model: "gemini-1.5-flash"
+      
+    
+    stt:
+      provider: "deepgram"
+      model: "nova-3"
+      language: "multi"
+    
+    tts:
+      provider: "cartesia"
+      model: "sonic-2"
+      voice: "95856005-0332-41b0-935f-352e296aa0df"
+    
+    vad:
+      provider: "silero"
+      model: "v4"
+
+  # RAG configuration
+  rag:
+    vectorstore_path: "C:\\Users\\gerar\\Desktop\\voice_agent\\RDL_chatbot\\knowledge_base\\faiss_index"
+    embedding_model: "BAAI/bge-m3"
+    retrieval_k: 4
+    llm_model: "gemini-1.5-flash-8b"
+
+  # Voice processing
+  voice_processing:
+    noise_cancellation: true
+    noise_cancellation_provider: "bvc"
