@@ -23,7 +23,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt 
 ```
 #  1. ENVIRONMENT SETUP 
-## 1. Create the .env file with placeholder API keys
+## Create the .env file with placeholder API keys
 #### NOTE: You MUST replace the 'your_actual_...' placeholders with your real keys.
 ```env
 LIVEKIT_API_KEY="your_actual_livekit_api_key_here"
@@ -59,3 +59,10 @@ python voice_agent.py console
 ### RAG Enhancement
 - **Without RAG**: General LLM knowledge only
 - **With RAG**: Specific RDL product info, company details, technical specs
+
+# ⚡Performance Optimizations
+- **Asynchronous Initialization**: RAG loads in background while agent starts
+- **Connection Pooling**: Reusable API connections
+- **Memory Management**: Conversation buffer with configurable limits
+- **Timeout Handling**: Graceful degradation under load
+- **Error Recovery**: Automatic retries for transient failures
