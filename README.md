@@ -66,3 +66,6 @@ python voice_agent.py console
 - **Memory Management**: Conversation buffer with configurable limits
 - **Timeout Handling**: Graceful degradation under load
 - **Error Recovery**: Automatic retries for transient failures
+
+  <img width="1700" height="3150" alt="image" src="https://github.com/user-attachments/assets/8ab0a796-fd59-4e0b-b874-660bd00038d6" />
+
