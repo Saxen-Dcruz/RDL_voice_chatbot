@@ -19,7 +19,7 @@ A sophisticated voice-enabled AI chatbot for **RDL Technologies** that combines 
 Clone and setup environment:
 
 ```bash
-git clone <repository>
+git clone https://github.com/Saxen-Dcruz/RDL_voice_chatbot.git
 cd RDL_CHATBOT
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
