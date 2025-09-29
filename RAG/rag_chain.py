@@ -62,7 +62,7 @@ class RAGManager:
                 )
                 
                 self.rag_initialized.set()
-                print("✅ RAG system pre-loaded and ready!")
+                print("RAG system pre-loaded and ready!")
 
             except asyncio.TimeoutError:
                 print("RAG initialization timed out.")
