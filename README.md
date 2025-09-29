@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 # --- 1. ENVIRONMENT SETUP ---
 
-# 1.1. Create the .env file with placeholder API keys
+# 1. Create the .env file with placeholder API keys
 # NOTE: You MUST replace the 'your_actual_...' placeholders with your real keys.
 echo "⚙️ Creating .env file with placeholder keys..."
 cat << EOF > .env
@@ -40,18 +40,12 @@ DEEPGRAM_API_KEY=your_actual_deepgram_key_here
 CARTESIA_API_KEY=your_actual_cartesia_key_here
 EOF
 
-# 1.2. Load the environment variables into the current session
-echo "✅ Loading environment variables..."
-# A simple way to load environment variables from the .env file
-export $(grep -v '^#' .env | xargs)
 
-# 1.3. Verify the environment variables (optional, for debugging)
-echo "🔍 Verifying GOOGLE_API_KEY loaded: ${GOOGLE_API_KEY:0:4}..." # Shows the first 4 characters
 
 # --- 2. KNOWLEDGE BASE SETUP ---
 
 # 2.1. Placeholder for adding documents. You must manually place files in the folder.
-echo "📚 Ensure RDL documents are placed in the 'knowledge_base/' folder."
+e"📚 Ensure RDL documents are placed in the 'knowledge_base/' folder."
 
 # 2.2. Process data and build the vector store (FAISS index)
 echo "🛠️ Running data ingestion to build the vector database..."
@@ -63,5 +57,31 @@ python data_ingestion.py
 echo "🚀 Launching the LiveKit Voice Agent..."
 python voice_agent.py console
 
+
+graph TD
+    A[User Voice Input] --> B[LiveKit Room]
+    B --> C[Deepgram STT]
+    C --> D[Text Transcription]
+    D --> E[Google LLM Analysis]
+    
+    E --> F{RDL Question?}
+    F -->|Yes| G[query_rag_database Tool]
+    F -->|No| H[Direct LLM Response]
+    
+    G --> I[RAG Manager]
+    I --> J[FAISS Vector Search]
+    J --> K[Context Retrieval]
+    K --> L[Gemini Context+Question]
+    L --> M[Knowledge Base Answer]
+    
+    M --> E
+    H --> N[Cartesia TTS]
+    M --> N
+    N --> O[Voice Response]
+    O --> P[User Hearing]
+    
+    Q[Knowledge Base] --> R[Data Ingestion]
+    R --> S[FAISS Index]
+    S --> J
 
 
