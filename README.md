@@ -44,22 +44,18 @@ CARTESIA_API_KEY="your_actual_cartesia_key_here"
 ``` bash
 python voice_agent.py console
 ```
-# 📁 Project File Structure
-RDL_CHATBOT/
-├── agents/
-│ ├── assistant.py # Main agent class with RAG tool integration
-│ └── init.py
-├── config/
-│ ├── config_loader.py # Configuration management
-│ ├── config.yaml # Main configuration file
-│ └── init.py
-├── knowledge_base/
-│ └── faiss_index/ # Vector database (auto-generated)
-├── RAG/
-│ ├── rag_chain.py # RAG system implementation
-│ └── init.py
-├── data_ingestion.py # Knowledge base processing
-├── voice_agent.py # Main application entry point
-├── prompts.py # LLM prompt templates
-└── requirements.txt # Dependencies 
+## 🎯 How It Works
+### Real-time Conversation Flow
 
+1. **Voice Capture**: User speaks into microphone
+2. **Speech Recognition**: Deepgram converts speech to text
+3. **Intent Analysis**: Google Gemini determines if question is RDL-related
+4. **Knowledge Retrieval**: RAG system searches vector database
+5. **Context Integration**: Retrieved info + conversation history sent to LLM
+6. **Response Generation**: LLM creates natural language answer
+7. **Voice Synthesis**: Cartesia converts text response to speech
+8. **Audio Output**: User hears the AI's response
+
+### RAG Enhancement
+- **Without RAG**: General LLM knowledge only
+- **With RAG**: Specific RDL product info, company details, technical specs
