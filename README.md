@@ -58,30 +58,4 @@ echo "🚀 Launching the LiveKit Voice Agent..."
 python voice_agent.py console
 
 
-graph TD
-    A[User Voice Input] --> B[LiveKit Room]
-    B --> C[Deepgram STT]
-    C --> D[Text Transcription]
-    D --> E[Google LLM Analysis]
-    
-    E --> F{RDL Question?}
-    F -->|Yes| G[query_rag_database Tool]
-    F -->|No| H[Direct LLM Response]
-    
-    G --> I[RAG Manager]
-    I --> J[FAISS Vector Search]
-    J --> K[Context Retrieval]
-    K --> L[Gemini Context+Question]
-    L --> M[Knowledge Base Answer]
-    
-    M --> E
-    H --> N[Cartesia TTS]
-    M --> N
-    N --> O[Voice Response]
-    O --> P[User Hearing]
-    
-    Q[Knowledge Base] --> R[Data Ingestion]
-    R --> S[FAISS Index]
-    S --> J
-
 
