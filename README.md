@@ -13,9 +13,8 @@ A sophisticated voice-enabled AI chatbot for **RDL Technologies** that combines 
   - Cartesia
 - RDL knowledge base documents
 
-## Installation
-Clone and setup environment:
-
+# Installation
+## Clone and setup environment:
 ```bash
 git clone https://github.com/Saxen-Dcruz/RDL_voice_chatbot.git
 cd RDL_CHATBOT
