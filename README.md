@@ -23,7 +23,8 @@ git clone https://github.com/Saxen-Dcruz/RDL_voice_chatbot.git
 cd RDL_CHATBOT
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements.txt ```
+
 
 ## 🔧 Configuration
 
