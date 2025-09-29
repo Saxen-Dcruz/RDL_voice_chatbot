@@ -34,9 +34,6 @@ CARTESIA_API_KEY="your_actual_cartesia_key_here"
 ```
 
 # --- 2. KNOWLEDGE BASE SETUP ---
-## Placeholder for adding documents. You must manually place files in the folder.
-### Ensure RDL documents are placed in the 'knowledge_base/' folder.
-
 ## Process data and build the vector store (FAISS index)
    Run data ingestion to build the FAISS vector database...
    ```bash
