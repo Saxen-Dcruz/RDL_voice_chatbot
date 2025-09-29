@@ -44,5 +44,22 @@ CARTESIA_API_KEY="your_actual_cartesia_key_here"
 ``` bash
 python voice_agent.py console
 ```
-
+# 📁 Project File Structure
+RDL_CHATBOT/
+├── agents/
+│ ├── assistant.py # Main agent class with RAG tool integration
+│ └── init.py
+├── config/
+│ ├── config_loader.py # Configuration management
+│ ├── config.yaml # Main configuration file
+│ └── init.py
+├── knowledge_base/
+│ └── faiss_index/ # Vector database (auto-generated)
+├── RAG/
+│ ├── rag_chain.py # RAG system implementation
+│ └── init.py
+├── data_ingestion.py # Knowledge base processing
+├── voice_agent.py # Main application entry point
+├── prompts.py # LLM prompt templates
+└── requirements.txt # Dependencies
 
