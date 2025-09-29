@@ -25,12 +25,13 @@ pip install -r requirements.txt
 # --- 1. ENVIRONMENT SETUP ---
 ## 1. Create the .env file with placeholder API keys
 #### NOTE: You MUST replace the 'your_actual_...' placeholders with your real keys.
-
-` LIVEKIT_API_KEY=your_actual_livekit_api_key_here
+```env
+LIVEKIT_API_KEY=your_actual_livekit_api_key_here
 LIVEKIT_API_SECRET=your_actual_livekit_secret_here
 GOOGLE_API_KEY=your_actual_google_api_key_here
 DEEPGRAM_API_KEY=your_actual_deepgram_key_here
-CARTESIA_API_KEY=your_actual_cartesia_key_here ` 
+CARTESIA_API_KEY=your_actual_cartesia_key_here
+```
 
 # --- 2. KNOWLEDGE BASE SETUP ---
 ## Placeholder for adding documents. You must manually place files in the folder.
